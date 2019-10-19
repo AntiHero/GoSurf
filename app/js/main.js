@@ -1,3 +1,4 @@
+/* Geolocation element */
 const city = document.querySelector('.header__location');
 
 /* Date elements */
@@ -5,14 +6,41 @@ const day = document.querySelector('.date__day');
 const monthAndyear = document.querySelector('.header__date span');
 
 $(function() {
-  ipLookUp();
+  /* Geolocation */
+  navigator.geolocation.getCurrentPosition(function(position) {
+    let latitude = position.coords.latitude;
+    let longitude = position.coords.longitude;
+
+    let geocoder = new google.maps.Geocoder();
+    let latlng = new google.maps.LatLng(latitude, longitude);
+
+    geocoder.geocode(
+      {
+        latLng: latlng,
+      },
+      function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          if (results[0]) {
+            let c = results[0].address_components[3].long_name;
+            city.innerHTML = c;
+          } else {
+            city.innerHTML = 'California';
+          }
+          $(city).fadeTo(500, 1);
+        } else {
+          alert('Sorry, your address not found');
+        }
+      }
+    );
+  });
+
+  //-------------
 
   let date = new Date(),
-      d = String(date.getDate()).padStart(2, '0'),
-      m = String(date.getMonth() + 1).padStart(2, '0'),
-      y = date.getFullYear();
+    d = String(date.getDate()).padStart(2, '0'),
+    m = String(date.getMonth() + 1).padStart(2, '0'),
+    y = date.getFullYear();
 
-  
   day.innerHTML = d;
   monthAndyear.innerHTML = m + ' | ' + y;
 
@@ -34,20 +62,4 @@ $(function() {
     asNavFor: '.header__slider',
     focusOnSelect: true,
   });
-
-  
 });
-
-async function ipLookUp() {
-  try {
-    let response = await $.ajax('http://ip-api.com/json');
-    city.innerHTML = response.city;
-
-    $(city).fadeTo(500, 1);
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-
-
