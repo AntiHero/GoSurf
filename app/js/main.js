@@ -7,32 +7,32 @@ const monthAndyear = document.querySelector('.header__date span');
 
 $(function() {
   /* Geolocation */
-  navigator.geolocation.getCurrentPosition(function(position) {
-    let latitude = position.coords.latitude;
-    let longitude = position.coords.longitude;
+  // navigator.geolocation.getCurrentPosition(function(position) {
+  //   let latitude = position.coords.latitude;
+  //   let longitude = position.coords.longitude;
 
-    let geocoder = new google.maps.Geocoder();
-    let latlng = new google.maps.LatLng(latitude, longitude);
+  //   let geocoder = new google.maps.Geocoder();
+  //   let latlng = new google.maps.LatLng(latitude, longitude);
 
-    geocoder.geocode(
-      {
-        latLng: latlng,
-      },
-      function(results, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
-          if (results[0]) {
-            let c = results[0].address_components[3].long_name;
-            city.innerHTML = c;
-          } else {
-            city.innerHTML = 'California';
-          }
-          $(city).fadeTo(500, 1);
-        } else {
-          alert('Sorry, your address not found');
-        }
-      }
-    );
-  });
+  //   geocoder.geocode(
+  //     {
+  //       latLng: latlng,
+  //     },
+  //     function(results, status) {
+  //       if (status == google.maps.GeocoderStatus.OK) {
+  //         if (results[0]) {
+  //           let c = results[0].address_components[3].long_name;
+  //           city.innerHTML = c;
+  //         } else {
+  //           city.innerHTML = 'California';
+  //         }
+  //         $(city).fadeTo(500, 1);
+  //       } else {
+  //         alert('Sorry, your address not found');
+  //       }
+  //     }
+  //   );
+  // });
 
   //-------------
 
