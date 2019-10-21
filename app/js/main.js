@@ -120,7 +120,7 @@ $(function() {
 
   function selectShore(e) {
     e.preventDefault();
-    $(shorePathSelected).stop().removeAttr('style');
+    $(shorePathSelected).stop().finish().removeAttr('style');
     sliderDots.forEach((slide, index) => {
       if ($(slide).hasClass('slick-current')) {
         shoreDots.forEach(dot => {
