@@ -13,6 +13,8 @@
     position: absolute;
     top: 40px;
     right: 80px;
+    opacity: 0;
+    visibility: hidden;
     cursor: pointer;
     z-index: 2;
     transition: all 0.4s;
@@ -20,13 +22,13 @@
     -moz-transition: all 0.4s;
     -ms-transition: all 0.4s;
     -o-transition: all 0.4s;
-    &.arrow-left {
+    &.header__arrow-left {
       right: 125px;
       &:hover {
         opacity: 0.7;
       }
     }
-    &.arrow-right {
+    &.header__arrow-right {
       &:hover {
         opacity: 0.7;
       }
@@ -259,17 +261,59 @@
   }
 }
 
-.line-animation {
-  stroke-dashoffset: 600;
-  stroke-dasharray: 600;
-  animation: animline;
-  -webkit-animation: animline 3s 6s forwards;
+.shore-name,
+.shore-path {
+  opacity: 0;
+  transition: opacity 1s;
+  -webkit-transition: opacity 1s;
+  -moz-transition: opacity 1s;
+  -ms-transition: opacity 1s;
+  -o-transition: opacity 1s;
 }
 
-@keyframes animline{
-  to{
-    stroke-dashoffset: 0;
-  }
+.shore-path {
+  stroke-dashoffset: 600;
+  stroke-dasharray: 600;
+  animation-fill-mode: forwards;
+}
+
+.shore-dot {
+  opacity: 0;
+  transition: all 1s;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -ms-transition: all 1s;
+  -o-transition: all 1s;
+}
+
+.shore-name--north,
+.shore-dot--north,
+.shore-dot--south,
+.shore-dot--west,
+.shore-dot--east {
+  animation-delay: 1.5s;
+}
+
+.shore-dot--main,
+.shore-name--main {
+  animation-delay: 2.5s;
+}
+
+.shore-dot {
+  stroke: #4af6cd;
+  stroke-width: 0px;
+  stroke-linejoin: round;
+}
+
+.shore-name.shore-name--selected,
+.shore-path.shore-path--selected {
+  opacity: 1;
+}
+
+.shore-dot.shore-dot--selected {
+  stroke: #4af6cd;
+  stroke-width: 7px;
+  stroke-linejoin: round;
 }
 
 @import 'media';
