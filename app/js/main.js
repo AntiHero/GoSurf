@@ -92,7 +92,7 @@ $(function() {
         .css('visibility', 'visible')
         .dequeue();
     })
-    .fadeTo(500, 1, 'linear');
+    .fadeTo(500, 1, 'linear')
 
   $('.header__slider-arrows').hover(function(e) {
     $(this).css('opacity', e.type === 'mouseenter' ? '.7' : '1');
