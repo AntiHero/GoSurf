@@ -1,19 +1,38 @@
-@import url('https://fonts.googleapis.com/css?family=Fira+Sans:200,300,400,500,600,700,800,900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:100, 200,300,400,500,600,700,800,900&display=swap');
 
-body, html {
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body,
+html {
   font-family: 'Fira Sans', sans-serif;
   font-weight: 400;
   font-size: 16px;
+  background-color: #171919;
+  color: #ffffff;
+  text-transform: uppercase;
+  box-sizing: border-box;
 }
 
 a {
   display: inline-block;
+  text-decoration: none;
+  color: #ffffff;
 }
 
-ul, li {
+ul,
+li {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.container {
+  max-width: 1920px;
+  margin: 0 auto;
 }
 
 .subtitle--left,
@@ -30,11 +49,57 @@ ul, li {
   display: inline-block;
   &::before {
     position: absolute;
-    content:"";
+    content: '';
     width: 80px;
     height: 1px;
     background-color: #ffffff;
     left: 0;
     top: 50%;
+  }
+}
+
+.title {
+  span {
+    font-weight: 800;
+    font-size: 200px;
+    color: rgba(255, 255, 255, 0.02);
+    position: relative;
+    display: inline-block;
+    transform: translateX(-50px);
+    -webkit-transform: translateX(-50px);
+    -moz-transform: translateX(-50px);
+    -ms-transform: translateX(-50px);
+    -o-transform: translateX(-50px);
+  }
+  h3 {
+    color: #ffffff;
+    font-size: 80px;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 294px;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 80px;
+      height: 1px;
+      background-color: $cyan;
+    }
+  }
+}
+
+.subtitle{
+  display: inline-block;
+  text-align: right;
+  &__head{
+    font-weight: 800;
+    font-size: 40px;
+    padding-right: 10px;
+    span {
+      font-weight: 100;
+      opacity: 0.8;
+    }
   }
 }
