@@ -6,14 +6,15 @@ const day = document.querySelector('.date__day');
 const monthAndyear = document.querySelector('.header__date span');
 
 /* Shore dots */
-const shoreDots = document.querySelectorAll('.shore-dot');
+const shoreDots = Array.prototype.slice.apply(document.querySelectorAll('.shore-dot')).reverse();
 const shoreDotWest = document.querySelector('.shore-dot--west');
 const shoreDotEast = document.querySelector('.shore-dot--east');
 const shoreDotSouth = document.querySelector('.shore-dot--south');
 const shoreDotNorth = document.querySelector('.shore-dot--north');
 
 /* Shore paths */
-const shorePaths = document.querySelectorAll('.shore-path');
+
+const shorePaths = Array.prototype.slice.apply(document.querySelectorAll('.shore-path')).reverse();
 const shorePathEast = document.querySelector('.shore-path-east');
 const shorePathWest = document.querySelector('.shore-path-west');
 const shorePathSouth = document.querySelector('.shore-path-south');
@@ -21,7 +22,7 @@ const shorePathNorth = document.querySelector('.shore-path-north');
 let shorePathSelected = document.querySelector('.shore-path--selected');
 
 /* Shore names */
-const shoreNames = document.querySelectorAll('.shore-name');
+const shoreNames = Array.prototype.slice.apply(document.querySelectorAll('.shore-name')).reverse();
 const shoreNameWest = document.querySelector('.shore-name--west');
 const shoreNameEast = document.querySelector('.shore-name--east');
 const shoreNameSouth = document.querySelector('.shore-name--south');
