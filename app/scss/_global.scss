@@ -141,3 +141,50 @@ li {
     }
   }
 }
+
+.surf,
+.travel {
+  padding: 160px 0 120px;
+}
+
+.travel {
+  padding-bottom: 265px;
+}
+
+.descr {
+  display: inline-block; 
+  &__head {
+    display: flex;
+    font-weight: 800;
+    font-size: 40px;
+    padding-right: 10px;
+    padding-left: 135px;
+    span {
+      font-weight: 100;
+      opacity: 0.8;
+    }
+  }
+}
+
+.headline-left {
+  font-size: 22px;
+  line-height: 32px;
+  text-align: right;
+  letter-spacing: 7.3px;
+  text-transform: uppercase;
+  color: #ffffff;
+  opacity: 0.5;
+  padding-left: 135px;
+  padding-right: 103px;
+  position: relative;
+  display: inline-block;
+  &::after {
+    position: absolute;
+    content: '';
+    width: 80px;
+    height: 1px;
+    background-color: #ffffff;
+    top: 50%;
+    right: 0;
+  }
+}

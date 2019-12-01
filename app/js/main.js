@@ -129,6 +129,17 @@ $(function() {
     focusOnSelect: true,
   });
 
+  /* ---Travel Slider--- */
+  $('.travel-slider').slick({
+    slidesToShow: 1,
+    inifinite: true,
+    fade: true,
+    prevArrow:
+      '<img class="travel__slider-arrows travel__arrow-left" src="img/arrow-left.svg" alt="" />',
+    nextArrow:
+      '<img class="travel__slider-arrows travel__arrow-right" src="img/arrow-right.svg" alt="" />',
+  });
+
   /* ---Shore animation--- */
   $(shorePathSelected)
     .delay(3000)
@@ -192,12 +203,6 @@ $(function() {
 
   $('.surf .slick-list').on('click touchend mouseup', selectSurfPlace);
 
-  let surfSlidesList = document.querySelector('.surf-slider .slick-track')
-    .children;
-  let currentSurfSlideIndex = 0;
-
-  //setSurfSlides();
-
   $('.slick-current .surf-box__inner').addClass('transitioned');
   $('.slick-current .surf-box__inner-btn').addClass('transitioned');
   $('.slick-current .slider-dots__circle').addClass('transitioned');
@@ -228,40 +233,5 @@ $(function() {
     }
 
     console.log($('.surf-slider .slick-current').attr('data-slick-index'));
-
-    //setSurfSlides();
-  }
-
-  function setSurfSlides() {
-    for (let slide of surfSlidesList) {
-      $(slide).fadeTo(0, 0)
-      if ($(slide).hasClass('slick-current')) {
-        console.log($(slide).attr('data-slick-index'));
-        if ($(slide).attr('data-slick-index') === 0) {
-
-        } else {
-          
-        }
-      }
-      
-    }
-
-    // $(`.surf-slider [data-slick-index=${currentSurfSlideIndex}]`).css(
-    //   'opacity',
-    //   '1'
-    // );
-
-    // $(`.surf-slider [data-slick-index=${currentSurfSlideIndex - 1}]`).css(
-    //   'opacity',
-    //   '1'
-    // );
-    // $(`.surf-slider [data-slick-index=${currentSurfSlideIndex - 2}]`).css(
-    //   'opacity',
-    //   '1'
-    // );
-    // $(`.surf-slider [data-slick-index=${currentSurfSlideIndex + 1}]`).css(
-    //   'opacity',
-    //   '1'
-    // );
   }
 });
