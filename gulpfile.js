@@ -42,7 +42,9 @@ gulp.task('html', function() {
 });
 
 gulp.task('script', function() {
-  return gulp.src('app/js/*.js').pipe(browserSync.reload({ stream: true }));
+return gulp
+    .src('app/js/*.js')
+    .pipe(browserSync.reload({ stream: true }));
 });
 
 gulp.task('js', function() {
@@ -56,6 +58,25 @@ gulp.task('js', function() {
     .pipe(gulp.dest('app/js'))
     .pipe(browserSync.reload({ stream: true }));
 });
+
+// gulp.task('babel', function() {
+//   return gulp
+//     .src('./app/js/*.js')
+//     .pipe(plumber())
+//     .pipe(
+//       babel({
+//         presets: [
+//           [
+//             '@babel/env',
+//             {
+//               modules: false,
+//             },
+//           ],
+//         ],
+//       })
+//     )
+//     .pipe(gulp.dest('dist'));
+// });
 
 gulp.task('browser-sync', function() {
   browserSync.init({

@@ -143,18 +143,23 @@ li {
 }
 
 .surf,
-.travel {
+.holder {
   padding: 160px 0 120px;
 }
 
-.travel {
+.holder {
   padding-bottom: 265px;
+}
+
+.holder.holder--sleep {
+  padding-top: 50px;
 }
 
 .descr {
   display: inline-block; 
   &__head {
     display: flex;
+    align-items: center;
     font-weight: 800;
     font-size: 40px;
     padding-right: 10px;
