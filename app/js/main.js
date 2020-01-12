@@ -38,8 +38,8 @@ const costPerGuest = 45;
 const nightsByDefault = 1;
 const guestsByDefault = 1;
 
-const surfboardShowInfoUrl = '../img/surfboard-minus.png';
-const surfboardHideInfoUrl = '../img/surfboard-plus.png';
+const surfboardShowInfoUrl = './img/surfboard-minus.png';
+const surfboardHideInfoUrl = './img/surfboard-plus.png';
 
 const surfBoardInfoBtn = () => {
   $('.surfboard-box__circle').click(function() {
