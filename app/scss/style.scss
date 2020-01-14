@@ -150,8 +150,18 @@
   font-size: 12px;
   line-height: 14px;
   letter-spacing: 1.05px;
-  position: relative;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
   padding-left: 19px;
+  max-width: 40px;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
 
   &::before {
     content: '';
@@ -160,6 +170,7 @@
     height: 13px;
     background-image: url(../img/marker.svg);
     left: 0;
+    right: 0;
     top: 0;
   }
 }
@@ -173,11 +184,12 @@
 
     span,
     img {
-      -webkit-transition: all 0.4s;
-      -moz-transition: all 0.4s;
-      -ms-transition: all 0.4s;
-      -o-transition: all 0.4s;
-    }
+      transition: all .4s;
+      -webkit-transition: all .4s;
+      -moz-transition: all .4s;
+      -ms-transition: all .4s;
+      -o-transition: all .4s;
+}
 
     span {
       display: block;
@@ -340,10 +352,6 @@
   background-position: right 200px;
   background-repeat: no-repeat;
   background-size: auto;
-
-  .slick-current {
-    // margin-left: -20px;
-  }
 
   .slick-initialized .slick-slide {
     position: relative;
@@ -718,8 +726,6 @@
     text-align: center;
   }
 }
-
-.holder-slider__item {}
 
 .holder-slider__item-head {
   padding-top: 92px;
@@ -1151,6 +1157,27 @@
       font-weight: 600;
     }
   }
+}
+
+
+.menu-btn {
+  width: 40px;
+  position: absolute;
+  top: 40px;
+  right: -60px;
+  z-index: 5;
+  cursor: pointer;
+  transition: all .4s;
+  &__line {
+    border-radius: 2px;
+    height: 5px;
+    margin-bottom: 5px;
+    background-color: $cyan;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+}
 }
 
 @import 'media';

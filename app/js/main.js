@@ -353,6 +353,11 @@ $(function() {
       '<img class="shop__slider-arrows shop__arrow-right" src="img/arrow-right.svg" alt="" />',
   });
 
+  $('.menu-btn').on('click', function() {
+    console.log('show')
+    $('.header__aside').toggleClass('show');
+  })
+
   calculator();
 
   surfBoardInfoBtn();
