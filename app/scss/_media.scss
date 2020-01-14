@@ -210,9 +210,11 @@
 
 @media (max-width: 532px) {
   .header__map {
-    display: none;
-  }
-
+    svg {
+      width: 300px;
+      height: 250px;
+    }
+  } 
   .header__slider-arrows {
     top: 110px;
   }
