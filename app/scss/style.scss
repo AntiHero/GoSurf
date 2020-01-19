@@ -1,7 +1,7 @@
-@import 'vars';
-@import 'libs';
-@import 'fonts';
-@import 'global';
+@import "vars";
+@import "libs";
+@import "fonts";
+@import "global";
 
 .header__slider {
   &-item {
@@ -164,7 +164,7 @@
   -o-transform: translateX(-50%);
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     width: 11px;
     height: 13px;
@@ -184,12 +184,12 @@
 
     span,
     img {
-      transition: all .4s;
-      -webkit-transition: all .4s;
-      -moz-transition: all .4s;
-      -ms-transition: all .4s;
-      -o-transition: all .4s;
-}
+      transition: all 0.4s;
+      -webkit-transition: all 0.4s;
+      -moz-transition: all 0.4s;
+      -ms-transition: all 0.4s;
+      -o-transition: all 0.4s;
+    }
 
     span {
       display: block;
@@ -272,7 +272,6 @@
 }
 
 @keyframes MoveUpDown {
-
   0%,
   100% {
     transform: translateY(0);
@@ -348,7 +347,7 @@
 
 .surf {
   padding: 160px 0 120px;
-  background-image: url('../img/poi.svg');
+  background-image: url("../img/poi.svg");
   background-position: right 200px;
   background-repeat: no-repeat;
   background-size: auto;
@@ -366,11 +365,6 @@
 }
 
 .surf-box {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-size: 110% 130%;
-
   &__inner {
     min-height: 750px;
     background-color: rgba(#1c2121, 0.87);
@@ -387,6 +381,14 @@
       background: rgba(#1c2121, 0.3);
     }
   }
+}
+
+.surf-box__wrapper {
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  //background-size: 110% 130%;
 }
 
 .surf-box__inner-title {
@@ -518,7 +520,7 @@
   position: relative;
 
   &::after {
-    content: '34.0501 N -118.2446 W';
+    content: "34.0501 N -118.2446 W";
     position: absolute;
     font-size: 18px;
     line-height: 22px;
@@ -633,7 +635,7 @@
   position: relative;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     background-color: $cyan;
     width: 80px;
@@ -739,8 +741,6 @@
   padding-right: 80px;
   text-align: right;
 }
-
-
 
 .holder-slider__descr {
   margin-top: -280px;
@@ -854,7 +854,7 @@
   position: absolute;
   top: 220px;
   right: 85px;
-  opacity: .25;
+  opacity: 0.25;
   cursor: pointer;
   z-index: 2;
   transition: all 0.4s;
@@ -1017,16 +1017,16 @@
     font-size: 24px;
     line-height: 24px;
     width: 290px;
-    transition: all .4s;
-    -webkit-transition: all .4s;
-    -moz-transition: all .4s;
-    -ms-transition: all .4s;
-    -o-transition: all .4s;
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
   }
 
   &__content::before {
     position: absolute;
-    content: '';
+    content: "";
     width: 80px;
     height: 1px;
     background-color: #ffffff;
@@ -1048,7 +1048,6 @@
       left: 10px;
       top: 50%;
     }
-
   }
 }
 
@@ -1090,23 +1089,23 @@
 
 .circle-btn {
   height: 100%;
-  background-image: url('../img/surfboard-minus.png');
+  background-image: url("../img/surfboard-minus.png");
   background-repeat: no-repeat;
   background-size: 12px 12px;
   background-position: center center;
   cursor: pointer;
-  transition: all .5s;
-  -webkit-transition: all .5s;
-  -moz-transition: all .5s;
-  -ms-transition: all .5s;
-  -o-transition: all .5s;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
 }
 
 .shop__slider-arrows {
   position: absolute;
   top: 0;
   right: 85px;
-  opacity: .25;
+  opacity: 0.25;
   cursor: pointer;
   z-index: 2;
   transition: all 0.4s;
@@ -1159,7 +1158,6 @@
   }
 }
 
-
 .menu-btn {
   width: 40px;
   position: absolute;
@@ -1167,7 +1165,11 @@
   right: -60px;
   z-index: 5;
   cursor: pointer;
-  transition: all .4s;
+  transition: all 0.4s;
+  opacity: .8;
+  &:hover {
+    opacity: 1;
+  }
   &__line {
     border-radius: 2px;
     height: 5px;
@@ -1177,7 +1179,8 @@
     -moz-border-radius: 2px;
     -ms-border-radius: 2px;
     -o-border-radius: 2px;
-}
+
+  }
 }
 
-@import 'media';
+@import "media";

@@ -222,6 +222,30 @@ $(function() {
     nextArrow:
       '<img class="surf__slider-arrows surf__arrow-right" src="img/arrow-right.svg" alt="" />',
     asNavFor: '.slider-map',
+    responsive: [
+      {
+        breakpoint: 1441,
+        settings: {
+          slidesToShow: 3,
+          centerMode: true,
+          focusOnSelect: true,
+        }
+      },
+      {
+        breakpoint: 1080,
+        settings: {
+          slidesToShow: 2,
+          centerMode: true,
+          focusOnSelect: true,
+        }
+      },
+      {
+        breakpoint: 466,
+        settings: {
+          slidesToShow: 1,
+        }
+      },
+    ]
   });
   let slideWidth = $('.surf-slider .slick-slide').width();
   let surfSlides = document.querySelectorAll('.surf-slider .slick-slide');
@@ -237,10 +261,37 @@ $(function() {
 
   $('.slider-map').slick({
     slidesToShow: 8,
-    arrow: false,
+    arrows: false,
     slidesToScroll: 1,
     asNavFor: '.surf-slider',
     focusOnSelect: true,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+          centerMode: true,
+          centerPadding: '40px',
+          infinite: true,
+        }
+      },
+      {
+        breakpoint: 1111,
+        settings: {
+          slidesToShow: 2,
+          centerMode: true,
+          infinite: true,
+        }
+      },
+      {
+        breakpoint: 875,
+        settings: {
+          slidesToShow: 1,
+          centerMode: false,
+          infinite: true,
+        }
+      },
+    ]
   });
   /* ---Travel Slider--- */
 
