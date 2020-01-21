@@ -389,8 +389,6 @@ $(function() {
       currentSurfBoxButton = $('.slick-current .surf-box__inner-btn');
       currentSlideContent = $('.slick-current .slider-dots__content');
     }
-
-    console.log($('.surf-slider .slick-current').attr('data-slick-index'));
   }
 
   /* Shop-slider */
@@ -405,7 +403,6 @@ $(function() {
   });
 
   $('.menu-btn').on('click', function() {
-    console.log('show')
     $('.header__aside').toggleClass('show');
   })
 
