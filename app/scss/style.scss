@@ -367,7 +367,7 @@
 .surf-box {
   &__inner {
     min-height: 750px;
-    background-color: rgba(#1c2121, 0.87);
+    background-color: rgba(#131f1f, 0.9);
     position: relative;
     height: 100%;
     width: 100%;
@@ -771,6 +771,17 @@
   }
 }
 
+.holder.holder--travel {
+  .holder-slider__descr {
+    background-position-x: 200%;
+    transition: all .7s ease-in-out;
+  }
+
+  .holder-slider__descr.transitioned {
+    background-position-x: 100%;
+  }
+}
+
 .holder-slider__info {
   display: flex;
   justify-content: space-around;
@@ -1132,7 +1143,7 @@
 /* FOOTER */
 .footer {
   text-align: center;
-  margin: 284px 0 34px 0;
+  padding: 284px 0 34px 0;
 
   .btn {
     span {
@@ -1159,14 +1170,15 @@
 }
 
 .menu-btn {
-  width: 40px;
+  color: $cyan;
   position: absolute;
-  top: 40px;
+  top: 30px;
   right: -60px;
   z-index: 5;
   cursor: pointer;
   transition: all 0.4s;
   opacity: .8;
+  font-size: 34px;
   &:hover {
     opacity: 1;
   }
