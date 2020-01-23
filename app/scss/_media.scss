@@ -746,6 +746,13 @@
       background-position-y: 50px;
     }
   }
+
+  .header__slider-item {
+    .slider-item__info-title {
+      width: 250px;
+      text-align: right;
+    }
+  }
 }
 
 @media (max-width: 516px) {

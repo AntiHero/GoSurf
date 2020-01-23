@@ -87,16 +87,16 @@ gulp.task('browser-sync', function() {
   });
 });
 
-gulp.task('export', function() {
-  let buildHtml = gulp.src('app/**/*.html').pipe(gulp.dest('dist'));
+gulp.task('export',async function() {
+  let buildHtml = await gulp.src('app/**/*.html').pipe(gulp.dest('dist'));
 
-  let BuildCss = gulp.src('app/css/**/*.css').pipe(gulp.dest('dist/css'));
+  let BuildCss = await gulp.src('app/css/**/*.css').pipe(gulp.dest('dist/css'));
 
-  let BuildJs = gulp.src('app/js/**/*.js').pipe(gulp.dest('dist/js'));
+  let BuildJs = await gulp.src('app/js/**/*.js').pipe(gulp.dest('dist/js'));
 
-  let BuildFonts = gulp.src('app/fonts/**/*.*').pipe(gulp.dest('dist/fonts'));
+  let BuildFonts = await gulp.src('app/fonts/**/*.*').pipe(gulp.dest('dist/fonts'));
 
-  let BuildImg = gulp.src('app/img/**/*.*').pipe(gulp.dest('dist/img'));
+  let BuildImg = await gulp.src('app/img/**/*.*').pipe(gulp.dest('dist/img'));
 });
 
 gulp.task('watch', function() {

@@ -68,7 +68,6 @@
   align-items: center;
   height: 40px;
   border-top: solid 4px #ffffff;
-  cursor: pointer;
   outline: none;
 
   &__num {
@@ -90,6 +89,13 @@
       right: 80px;
       bottom: 116px;
       text-align: right;
+
+      &-link {
+        transition: all .4s;
+        &:hover {
+          transform: translateX(10px);
+        }
+      }
 
       &-subtite {
         margin-bottom: 5px;
@@ -354,6 +360,10 @@
 
   .slick-initialized .slick-slide {
     position: relative;
+  }
+
+  .slick-slide {
+    cursor: pointer;
   }
 }
 
@@ -654,7 +664,16 @@
 
 .slider-dots__content-link {
   padding-top: 3px;
+  outline: none;
+  transition: all .4s;
+  opacity: .8;
+
+  &:hover{
+    opacity: 1;
+    transform: translateX(10px);
+  }
 }
+
 
 .slider-dots {
   position: relative;
@@ -1143,7 +1162,7 @@
 /* FOOTER */
 .footer {
   text-align: center;
-  padding: 284px 0 34px 0;
+  padding: 200px 0 34px 0;
 
   .btn {
     span {
@@ -1156,7 +1175,7 @@
   }
 
   &__copy {
-    margin-top: 43px;
+    margin-top: 60px;
     font-weight: 300;
     font-size: 12px;
     line-height: 14px;

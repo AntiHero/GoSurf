@@ -41,6 +41,8 @@ const guestsByDefault = 1;
 const surfboardShowInfoUrl = "./img/surfboard-minus.png";
 const surfboardHideInfoUrl = "./img/surfboard-plus.png";
 
+const slidesTotal = 8;
+
 const surfBoardInfoBtn = () => {
   $(".surfboard-box__circle").click(function() {
     $(this).toggleClass("surfboard-box__circle--show");
@@ -200,7 +202,7 @@ $(function() {
     slidesToShow: 4,
     slidesToScroll: 4,
     asNavFor: ".header__slider",
-    focusOnSelect: true
+    focusOnSelect: false
   });
   $(".header__slider-arrows")
     .delay(3000)
@@ -298,7 +300,7 @@ $(function() {
     ]
   });
   /* ---Travel Slider--- */
-
+  
   $(".holder-slider").slick({
     slidesToShow: 1,
     inifinite: true,
@@ -308,6 +310,7 @@ $(function() {
     nextArrow:
       '<img class="holder__slider-arrows holder__arrow-right" src="img/arrow-right.svg" alt="" />'
   });
+
   /* ---Shore animation--- */
 
   $(shorePathSelected)
@@ -378,12 +381,12 @@ $(function() {
 
   function selectSurfPlace(e) {
     e.preventDefault();
-
     if (!$(".slick-current .surf-box__inner").hasClass("transitioned")) {
       $(".slick-current .surf-box__inner").addClass("transitioned");
       $(".slick-current .surf-box__inner-btn").addClass("transitioned");
       $(".slick-current .slider-dots__circle").addClass("transitioned");
       $(".slick-current .slider-dots__content").addClass("transitioned");
+
       currentSurfBox.removeClass("transitioned");
       currentSurfBoxButton.removeClass("transitioned");
       currentMapCircle.removeClass("transitioned");
@@ -392,6 +395,11 @@ $(function() {
       currentSurfBox = $(".slick-current .surf-box__inner");
       currentSurfBoxButton = $(".slick-current .surf-box__inner-btn");
       currentSlideContent = $(".slick-current .slider-dots__content");
+    }
+
+    if (!$(".slick-current .slider-dots__content").hasClass("transitioned")) {
+      $(".slick-current .slider-dots__circle").addClass("transitioned");
+      $(".slick-current .slider-dots__content").addClass("transitioned");
     }
   }
 
@@ -407,7 +415,7 @@ $(function() {
   });
 
   $(".menu-btn").on("click", function() {
-    $(".header__aside").toggleClass("show");
+    $(".header__aside").removeClass('animated fadeInLeft delay-3s').toggleClass("show");
   });
 
   calculator();
@@ -416,6 +424,7 @@ $(function() {
 
   new WOW().init();
 
+  /* Airplane animation */
   const element_position = $(".holder.holder--travel .holder-slider__item-head").offset().top;
 
   $(window).on("scroll", function() {
@@ -428,4 +437,31 @@ $(function() {
       $('.holder-slider__descr').addClass('transitioned');
     }
   });
+
+  $('.slider-dots__content-link').on('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    $('.surf-slider').slick('slickNext');
+    selectSurfPlace(e);
+  })
+
+
+  $('.slider-item__info-link').on('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    $('.header__slider').slick('slickNext');
+    selectShore(e);
+  })
+
+  const lat = 58.7984;
+  const lng = 17.8081;
+  const params = 'waveHeight,airTemperature';
+
+  // $.ajax(`https://api.stormglass.io/v1/weather/point?lat=${lat}&lng=${lng}&params=${params}`, {
+  //   headers: {
+  //     'Authorization': '28553914-3e24-11ea-acb4-0242ac130002-28553bb2-3e24-11ea-acb4-0242ac130002'
+  //   }
+  // }).done(function(data) {
+  //   console.log(data, 'weather')
+  // })
 });
