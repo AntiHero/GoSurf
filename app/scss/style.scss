@@ -69,7 +69,7 @@
   height: 40px;
   border-top: solid 4px #ffffff;
   outline: none;
-
+  cursor: pointer;
   &__num {
     font-weight: 800;
     line-height: 34px;
@@ -91,7 +91,7 @@
       text-align: right;
 
       &-link {
-        transition: all .4s;
+        transition: all 0.4s;
         &:hover {
           transform: translateX(10px);
         }
@@ -352,6 +352,7 @@
 }
 
 .surf {
+  position: relative;
   padding: 160px 0 120px;
   background-image: url("../img/poi.svg");
   background-position: right 200px;
@@ -364,6 +365,28 @@
 
   .slick-slide {
     cursor: pointer;
+  }
+
+  &-loader.surf-loader--visible {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 5;
+    background-color: rgba(22, 24, 27, 0.8);
+    visibility: visible;
+    opacity: 1;
+
+    .loader {
+      padding-top: 45vh;
+    }
+  }
+
+  &-loader {
+    display: none;
   }
 }
 
@@ -665,15 +688,11 @@
 .slider-dots__content-link {
   padding-top: 3px;
   outline: none;
-  transition: all .4s;
-  opacity: .8;
-
-  &:hover{
-    opacity: 1;
-    transform: translateX(10px);
+  transition: all 0.4s;
+  &:hover {
+    transform: translateX(5px);
   }
 }
-
 
 .slider-dots {
   position: relative;
@@ -793,7 +812,7 @@
 .holder.holder--travel {
   .holder-slider__descr {
     background-position-x: 200%;
-    transition: all .7s ease-in-out;
+    transition: all 0.7s ease-in-out;
   }
 
   .holder-slider__descr.transitioned {
@@ -1186,6 +1205,17 @@
       font-weight: 600;
     }
   }
+
+  &__poweredby {
+    padding-top: 100px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+    img {
+      max-width: 200px;
+    }
+  }
 }
 
 .menu-btn {
@@ -1196,7 +1226,7 @@
   z-index: 5;
   cursor: pointer;
   transition: all 0.4s;
-  opacity: .8;
+  opacity: 0.8;
   font-size: 34px;
   &:hover {
     opacity: 1;
@@ -1210,7 +1240,6 @@
     -moz-border-radius: 2px;
     -ms-border-radius: 2px;
     -o-border-radius: 2px;
-
   }
 }
 

@@ -43,6 +43,8 @@ const surfboardHideInfoUrl = "./img/surfboard-plus.png";
 
 const slidesTotal = 8;
 
+let prevIndex = 0;
+
 const surfBoardInfoBtn = () => {
   $(".surfboard-box__circle").click(function() {
     $(this).toggleClass("surfboard-box__circle--show");
@@ -185,6 +187,7 @@ $(function() {
     d = String(date.getDate()).padStart(2, "0"),
     m = String(date.getMonth() + 1).padStart(2, "0"),
     y = date.getFullYear();
+
   day.innerHTML = d;
   monthAndyear.innerHTML = m + " | " + y;
   $(".header__slider").slick({
@@ -197,13 +200,15 @@ $(function() {
       '<img class="header__slider-arrows header__arrow-right" src="img/arrow-right.svg" alt="" />',
     asNavFor: ".header__slider-dots"
   });
+
   $(".header__slider-dots").slick({
     infinite: true,
     slidesToShow: 4,
     slidesToScroll: 4,
     asNavFor: ".header__slider",
-    focusOnSelect: false
+    focusOnSelect: true
   });
+
   $(".header__slider-arrows")
     .delay(3000)
     .queue(function() {
@@ -215,6 +220,7 @@ $(function() {
   $(".header__slider-arrows").hover(function(e) {
     $(this).css("opacity", e.type === "mouseenter" ? ".7" : "1");
   });
+
   /*--- Surf Slider ---*/
 
   $(".surf-slider").slick({
@@ -300,7 +306,7 @@ $(function() {
     ]
   });
   /* ---Travel Slider--- */
-  
+
   $(".holder-slider").slick({
     slidesToShow: 1,
     inifinite: true,
@@ -323,47 +329,67 @@ $(function() {
     );
   /* Slide dots */
 
-  let sliderDots = document.querySelectorAll(
-    ".header__slider-dots .slick-slide"
-  );
   /* Header arrows */
 
   let arrows = document.querySelectorAll(".header__slider-arrows");
+
   arrows[0].addEventListener("click", selectShore, false);
   arrows[1].addEventListener("click", selectShore, false);
 
-  function selectShore(e) {
+  async function selectShore(e) {
+    $(".header__slider-dots");
     e.preventDefault();
-    $(shorePathSelected)
-      .stop()
-      .finish()
-      .removeAttr("style");
-    sliderDots.forEach(function(slide, index) {
-      if ($(slide).hasClass("slick-current")) {
-        shoreDots.forEach(function(dot) {
-          dot.classList.remove("shore-dot--selected");
-        });
-        shoreDots[index].classList.add("shore-dot--selected");
-        shoreNames.forEach(function(name) {
-          name.classList.remove("shore-name--selected", "fadeIn");
-        });
-        shoreNames[index].classList.add("shore-name--selected");
-        shorePaths.forEach(function(path) {
-          path.classList.remove("shore-path--selected");
-        });
-        shorePaths[index].classList.add("shore-path--selected");
-        shorePathSelected = shorePaths[index];
-        $(shorePathSelected)
-          .delay(700)
-          .animate(
-            {
-              "stroke-dashoffset": "0"
-            },
-            2500
-          );
-      }
-    });
+
+    let sliderDots = document.querySelectorAll(
+      ".header__slider-dots .slick-slide"
+    );
+
+    if ($(e.currentTarget).attr("data-slick-index") !== String(prevIndex)) {
+      await $(shorePathSelected)
+        .stop()
+        .finish()
+        .removeAttr("style");
+
+      sliderDots.forEach(function(slide, index) {
+        if ($(slide).hasClass("slick-current")) {
+          if ($(e.currentTarget).attr("data-slick-index") !== undefined) {
+            prevIndex = index;
+          }
+          shoreDots.forEach(function(dot) {
+            dot.classList.remove("shore-dot--selected");
+          });
+
+          shoreDots[index].classList.add("shore-dot--selected");
+          shoreNames.forEach(function(name) {
+            name.classList.remove("shore-name--selected", "fadeIn");
+          });
+
+          shoreNames[index];
+          shoreNames[index].classList.add("shore-name--selected");
+          shorePaths.forEach(function(path) {
+            path.classList.remove("shore-path--selected");
+          });
+
+          shorePaths[index].classList.add("shore-path--selected");
+          shorePathSelected = shorePaths[index];
+
+          $(shorePathSelected)
+            .delay(700)
+            .animate(
+              {
+                "stroke-dashoffset": "0"
+              },
+              2500
+            );
+        }
+      });
+    }
   }
+
+  $(".header__slider-dots .slick-slide").on("click", function(e) {
+    selectShore(e);
+  });
+
   /* Surf slider arrows */
 
   let arrowsSurf = document.querySelectorAll(".surf__slider-arrows");
@@ -415,7 +441,9 @@ $(function() {
   });
 
   $(".menu-btn").on("click", function() {
-    $(".header__aside").removeClass('animated fadeInLeft delay-3s').toggleClass("show");
+    $(".header__aside")
+      .removeClass("animated fadeInLeft delay-3s")
+      .toggleClass("show");
   });
 
   calculator();
@@ -425,7 +453,9 @@ $(function() {
   new WOW().init();
 
   /* Airplane animation */
-  const element_position = $(".holder.holder--travel .holder-slider__item-head").offset().top;
+  const element_position = $(
+    ".holder.holder--travel .holder-slider__item-head"
+  ).offset().top;
 
   $(window).on("scroll", function() {
     const offset = -80;
@@ -433,35 +463,74 @@ $(function() {
     let scroll_pos_test = element_position + offset;
 
     if (y_scroll_pos > scroll_pos_test) {
-      $(window).off('scroll');
-      $('.holder-slider__descr').addClass('transitioned');
+      $(window).off("scroll");
+      $(".holder-slider__descr").addClass("transitioned");
     }
   });
 
-  $('.slider-dots__content-link').on('click', function (e) {
+  $(".slider-dots__content-link").on("click", function(e) {
     e.preventDefault();
     e.stopPropagation();
-    $('.surf-slider').slick('slickNext');
+    $(".surf-slider").slick("slickNext");
     selectSurfPlace(e);
-  })
+  });
 
-
-  $('.slider-item__info-link').on('click', function (e) {
+  $(".slider-item__info-link").on("click", function(e) {
     e.preventDefault();
     e.stopPropagation();
-    $('.header__slider').slick('slickNext');
+    $(".header__slider").slick("slickNext");
     selectShore(e);
-  })
+  });
 
-  const lat = 58.7984;
-  const lng = 17.8081;
-  const params = 'waveHeight,airTemperature';
+  const currentDate = [y, m, d].join("-");
+  const start = (end = currentDate);
+  const params = "waveHeight,seaLevel,windSpeed";
 
-  // $.ajax(`https://api.stormglass.io/v1/weather/point?lat=${lat}&lng=${lng}&params=${params}`, {
-  //   headers: {
-  //     'Authorization': '28553914-3e24-11ea-acb4-0242ac130002-28553bb2-3e24-11ea-acb4-0242ac130002'
-  //   }
-  // }).done(function(data) {
-  //   console.log(data, 'weather')
-  // })
+  const shoresCoord = [
+    //Malibu
+    {
+      name: 'Malibu',
+      lng: -118.7738,
+      lat: 34.025
+    },
+
+    //Airlie
+    {
+      name: 'Airlie',
+      lng: 148.716949,
+      lat: -20.267500
+    },
+    //CloudNine
+    {
+      name: 'Cloud Nine',
+      lng: 126.165153,
+      lat: 9.813669
+    },
+    //VieuxBoucau
+    {
+      name: 'Vieux Boucau',
+      lng: -1.4,
+      lat: 43.7833
+    }
+  ];
+
+  // shoresCoord.forEach(coord => {
+  //   $.ajax(`https://api.stormglass.io/v1/weather/point?lat=${coord.lat}&lng=${coord.lng}&params=${params}&start=${start}&end=${end}`, {
+  //     headers: {
+  //       'Authorization': '28553914-3e24-11ea-acb4-0242ac130002-28553bb2-3e24-11ea-acb4-0242ac130002'
+  //     }
+  //   }).done(function(data) {
+  //     console.log(data, coord)
+  //   })
+  // });
+
+  // let timer = setTimeout(() => {
+  //   $(".surf-loader").removeClass("surf-loader--visible");
+  // }, 6000);
+
+  // $(document).ajaxStop(function() {
+  //   clearTimeout(timer);
+  //   $(".surf-loader").removeClass("surf-loader--visible")
+  // });
+  
 });
