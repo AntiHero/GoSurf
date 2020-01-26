@@ -181,6 +181,30 @@
   }
 }
 
+.main-loader.main-loader--visible {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: 5;
+  overflow-y: hidden;
+  background-color: rgba(22, 24, 27, 0.8);
+  visibility: visible;
+  overflow-y: visible;
+  opacity: 1;
+
+  .loader {
+    padding-top: 45vh;
+  }
+}
+
+.main-loader {
+  display: none;
+}
+
 .menu {
   padding-top: 50px;
 
@@ -367,27 +391,6 @@
     cursor: pointer;
   }
 
-  &-loader.surf-loader--visible {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    z-index: 5;
-    background-color: rgba(22, 24, 27, 0.8);
-    visibility: visible;
-    opacity: 1;
-
-    .loader {
-      padding-top: 45vh;
-    }
-  }
-
-  &-loader {
-    display: none;
-  }
 }
 
 .surf__subtitle {
@@ -811,7 +814,7 @@
 
 .holder.holder--travel {
   .holder-slider__descr {
-    background-position-x: 200%;
+    background-position-x: 100vw;
     transition: all 0.7s ease-in-out;
   }
 

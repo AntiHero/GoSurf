@@ -156,7 +156,31 @@ const calculator = () => {
   });
 };
 
-$(function() {
+$(document).ready(function() {
+  //const lazyImages = [].slice.call(document.querySelectorAll('.holder-slider__item-head'));
+  const lazyImages = Array.from(
+    document.querySelectorAll(".holder-slider__item-head")
+  );
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(
+      entries,
+      observer
+    ) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          const lazyImage = entry.target;
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.src})`;
+          lazyImageObserver.unobserve(lazyImage);
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage);
+    });
+  }
+
   /* Geolocation */
   // navigator.geolocation.getCurrentPosition(function(position) {
   //   let latitude = position.coords.latitude;
@@ -182,7 +206,7 @@ $(function() {
   //     }
   //   );
   // });
-  //-------------
+
   let date = new Date(),
     d = String(date.getDate()).padStart(2, "0"),
     m = String(date.getMonth() + 1).padStart(2, "0"),
@@ -434,6 +458,7 @@ $(function() {
     slidesToShow: 1,
     inifinite: true,
     fade: true,
+    lazyLoad: "ondemand",
     prevArrow:
       '<img class="shop__slider-arrows shop__arrow-left" src="img/arrow-left.svg" alt="" />',
     nextArrow:
@@ -486,51 +511,81 @@ $(function() {
   const start = (end = currentDate);
   const params = "waveHeight,seaLevel,windSpeed";
 
-  const shoresCoord = [
+  const shoresData = [
     //Malibu
     {
-      name: 'Malibu',
+      name: "Malibu",
       lng: -118.7738,
       lat: 34.025
     },
 
     //Airlie
     {
-      name: 'Airlie',
+      name: "Airlie",
       lng: 148.716949,
-      lat: -20.267500
+      lat: -20.2675
     },
     //CloudNine
     {
-      name: 'Cloud Nine',
+      name: "Cloud Nine",
       lng: 126.165153,
       lat: 9.813669
     },
     //VieuxBoucau
     {
-      name: 'Vieux Boucau',
+      name: "Vieux Boucau",
       lng: -1.4,
       lat: 43.7833
     }
   ];
 
-  // shoresCoord.forEach(coord => {
-  //   $.ajax(`https://api.stormglass.io/v1/weather/point?lat=${coord.lat}&lng=${coord.lng}&params=${params}&start=${start}&end=${end}`, {
-  //     headers: {
-  //       'Authorization': '28553914-3e24-11ea-acb4-0242ac130002-28553bb2-3e24-11ea-acb4-0242ac130002'
-  //     }
-  //   }).done(function(data) {
-  //     console.log(data, coord)
-  //   })
-  // });
+  let surfContentByName = {};
 
-  // let timer = setTimeout(() => {
-  //   $(".surf-loader").removeClass("surf-loader--visible");
-  // }, 6000);
+  const surfContent = Array.from($(".surf .slider-dots__content"));
+  shoresData.forEach(shore => {
+    surfContent.forEach(content => {
+      if (
+        content.children[0].children[0].children[0].innerHTML
+          .toLowerCase()
+          .includes(shore.name.toLowerCase())
+      ) {
+        surfContentByName[shore.name] =
+          surfContentByName[shore.name] === undefined
+            ? [content]
+            : surfContentByName[shore.name].concat(content);
+      }
+    });
+  });
 
-  // $(document).ajaxStop(function() {
-  //   clearTimeout(timer);
-  //   $(".surf-loader").removeClass("surf-loader--visible")
-  // });
-  
+  shoresData.forEach(shore => {
+    $.ajax(
+      `https://api.stormglass.io/v1/weather/point?lat=${shore.lat}&lng=${shore.lng}&params=${params}&start=${start}&end=${end}`,
+      {
+        headers: {
+          Authorization:
+            "28553914-3e24-11ea-acb4-0242ac130002-28553bb2-3e24-11ea-acb4-0242ac130002"
+        }
+      }
+    ).done(function(data) {
+      surfContentByName[shore.name].forEach(
+        shore =>
+          (shore.children[1].children[0].children[1].innerText =
+            data.hours[0].waveHeight[0].value)
+      );
+      surfContentByName[shore.name].forEach(
+        shore =>
+          (shore.children[1].children[1].children[1].innerText =
+            data.hours[0].seaLevel[0].value)
+      );
+      surfContentByName[shore.name].forEach(
+        shore =>
+          (shore.children[1].children[2].children[1].innerText =
+            data.hours[0].windSpeed[0].value)
+      );
+    });
+  });
+});
+
+$(window).on("load", function() {
+  $(".main-loader").removeClass("main-loader--visible");
 });
